@@ -15,25 +15,21 @@ const promise2 = new Promise((resolve, reject) => {
 });
 
 promise1.then(() => {
-  const successMessage = document.createElement('div');
-
-  successMessage.classList.add('message');
-  successMessage.textContent = 'Promise was resolved!';
-  document.body.append(successMessage);
+  creatingMessage('Promise was resolved!');
 });
 
 promise2
   .then(() => {
-    const successMessage = document.createElement('div');
-
-    successMessage.classList.add('message');
-    successMessage.textContent = 'Promise was resolved!';
-    document.body.append(successMessage);
+    creatingMessage('Promise was resolved!');
   })
   .catch((error) => {
-    const errorMessage = document.createElement('div');
-
-    errorMessage.classList.add('message', 'error-message');
-    errorMessage.textContent = error.message;
-    document.body.append(errorMessage);
+    creatingMessage(error.message, 'error-message');
   });
+
+function creatingMessage(message, addition) {
+  const createdElement = document.createElement('div');
+
+  createdElement.classList.add('message', addition);
+  createdElement.textContent = message;
+  document.body.append(createdElement);
+}
